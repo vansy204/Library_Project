@@ -1,0 +1,17 @@
+1, Nha Gia Kim, Paulo Coelho, 57.3
+2, Doi Thay Doi Khi Chung Ta Thay Doi, Andrew Matthews, 73.1
+3, Dac Nhan Tam, Dale Carnegie, 63.6
+4, Cach Nghi De Thanh Cong, Napoleon Hill, 91.2
+5, Hat Giong Tam Hon, Nhieu Tac Gia, 63.2
+6, Quang Ganh Lo Di Va Vui Song, Dale Carnegie, 100
+7, Doc Vi Bat Ky Ai, David, 62.3
+8, Tieu Thuyet Bo Gia, Mario Puzo, 192.5
+9, Cuoc Song Khong Gioi Han, Nick Vujicic, 62.7
+10, Nguoi Giau Nhat Thanh Babylon, Geore, 324.2
+11, 7 Thoi Quen Cua Nguoi Thanh Dat, Sean Covey, 632
+12, Hanh Trinh Ve Phuong Dong, Journey, 23
+13, Toi Ac Va Hinh Phat, FyoDor, 63.6
+14, Nguoi Ban Hang Vi Dai Nhat The Gioi, Og Madino, 73.4
+15, Tren Duong Bang, Tony, 643
+16, Dai Duong Den, Dang Hoang Giang, 19
+17, Xac Chet Bi An, Keny, 63
