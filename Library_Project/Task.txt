@@ -1,7 +1,7 @@
 1, Rent, Dac Nhan Tam, Dang Thu Thao, 2280602772, 10, 39.5
-2, Buy, Nguoi Giau Nhat Thanh Babylon, Dang Thi Kim Linh, 2280602781, 1000, 100
+2, Buy, Ky Thuat Lap Trinh, Dang Thi Kim Linh, 2280602781, 102, 100.4
 3, Buy, 7 Thoi Quen Cua Nguoi Thanh Dat, Pham Kim Trang, 2280602778, 0, 50
-4, Rent, Doc Vi Bat Ky Ai, Nguyen Han, 2280602780, 0, 50
+4, Rent, Doc Vi Bat Ky Ai, Pham Van Sy, 2280602780, 0, 50
 5, Rent, Dai Duong DEN, Pham Van SY, 2280602772, 15, 49
-6, Rent, Doi Thay Doi Khi Chung Ta Thay Doi, Pham Van Sy, 13, 73.1
-7, Buy, Doi Thay Doi Khi Chung Ta Thay Doi, Pham Van Sy, 0, 73.1
+6, Buy, Cach Nghi De Thanh Cong, Pham Van Sy, 2280602772, 0, 91.2
+7, Rent, Doi Thay Doi Khi Chung Ta Thay Doi, Pham Van Sy, 2280602772, 10, 73.1
