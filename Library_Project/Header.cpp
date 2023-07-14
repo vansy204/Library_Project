@@ -164,11 +164,14 @@ void Manage_Add_Book(Book book[MAX])
 {
 	string name;
 	string author;
+	float price;
 	cout << "Input Name of Book: ";
 	cin.ignore();
 	getline(cin, name);
 	cout << "Input Author of Book: ";
 	getline(cin, author);
+	cout << "Input price: ";
+	cin >> price;
 	ofstream File_Book_out;
 	File_Book_out.open("book.txt", ios_base::app);
 	if (!File_Book_out.is_open())
@@ -176,7 +179,9 @@ void Manage_Add_Book(Book book[MAX])
 		cerr << "FAIL TO OPEN FILE Book.txt" << endl;
 		return;
 	}
-	File_Book_out << "\n" << book->LengOfBook + 1 << ", " << name << ", " << author;
+	cout << "ADD SUCCES!!!" << endl;
+	File_Book_out << "\n" << book->LengOfBook + 1 << ", " << name << ", " << author << ", " << price;
+	File_Book_out.close();
 	book->LengOfBook = book->LengOfBook + 1;
 }
 void Print_New_data(Data data[MAX])
@@ -215,6 +220,7 @@ void Manages_Edit_Task(Data data[MAX])
 		{
 			data[i].Task = temp;
 			check = 1;
+			cout << "EDIT SUCCESS!!!" << endl;
 		}
 	}
 	if (check == 0)
@@ -239,6 +245,7 @@ void Manages_Edit_Name_Book(Data data[MAX])
 		{
 			data[i].Name_Book = name;
 			check = 1;
+			cout << "EDIT SUCCESS!!!" << endl;
 		}
 	}
 	if (check == 0)
@@ -263,6 +270,7 @@ void Manages_Edit_Name_Students(Data data[MAX])
 		{
 			data[i].Name_Student_Use = name;
 			check = 1;
+			cout << "EDIT SUCCESS!!!" << endl;
 		}
 	}
 	if (check == 0)
@@ -286,6 +294,7 @@ void Manages_Edit_Price(Data data[MAX])
 		{
 			data[i].Price = price;
 			check = 1;
+			cout << "EDIT SUCCESS!!!" << endl;
 		}
 	}
 	if (check == 0)
@@ -309,6 +318,7 @@ void Manages_Edit_Day(Data data[MAX])
 		{
 			data[i].Days = day;
 			check = 1;
+			cout << "EDIT SUCCESS!!!" << endl;
 		}
 	}
 	if (check == 0)
@@ -319,6 +329,7 @@ void Manages_Edit_Day(Data data[MAX])
 }
 void Manages_Edit_Data(Data data[MAX])
 {
+
 	cout << "\n\n\n\t\t\t\t     WHAT DO YOU WANT TO DO?" << endl;
 	cout << "\t\t\t=====================================" << endl;
 	cout << "\t\t\t=\t1. Edit Task                =" << endl;
@@ -368,7 +379,7 @@ void Manages_Edit_Data(Data data[MAX])
 }
 void Students_Rent_Buy_Book(Data data[MAX], Book book[MAX])
 {
-	Read_Book_From_File(book);
+
 	Print_List_Book(book);
 	int index;
 	string name;
@@ -380,7 +391,7 @@ void Students_Rent_Buy_Book(Data data[MAX], Book book[MAX])
 	{
 		if (i == index)
 		{
-			cout << "Are you sure to Rent book:" << endl;
+			cout << "Are you sure to choose this book:" << endl;
 			cout << book[i].ID_Book << ", " << book[i].Name_book << ", " << book[i].Author << ", " << book[i].Price << endl;
 		}
 	}
@@ -390,38 +401,45 @@ void Students_Rent_Buy_Book(Data data[MAX], Book book[MAX])
 	if (choose == 1)
 	{
 		int day;
+		long long mssv;
 		do
 		{
-			
 			cout << "Input your name: ";
 			cin.ignore();
 			getline(cin, name);
+			cout << "Input your id:";
+			cin >> mssv;
 			cout << "Input Task you want to do: ";
+			cin.ignore();
 			getline(cin, task);
-			cout << "How many days you want to rent: ";
-			cin >> day;
+			if (task == "Buy")
+			{
+				day = 0;
+			}
+			else
+			{
+				cout << "How many days you want to rent: ";
+				cin >> day;
+			}
 			if (day > 15)
 			{
 				cout << "Overtimes!!" << endl;
 				return;
 			}
-			if (day > 1 || day < 15)
-			{
-				cout << "RENT SUCCES!!" << endl;
-			}
-		} while (day >15);
+			cout << task << " SUCCSESS!!" << endl;
+		} while (day > 15);
 		ofstream File_New_Data_Out;
 		File_New_Data_Out.open("Task.txt", ios_base::app);
 		if (!File_New_Data_Out.is_open())
 		{
 			cerr << "FAIL TO OPEN FILE" << endl;
 		}
-		File_New_Data_Out << "\n" <<  data->LengOfData + 1 << ", " << task << ", " << book[index].Name_book << ", " << name << ", " << day << ", " << book[index].Price;
+		File_New_Data_Out << "\n" << data->LengOfData + 1 << ", " << task << ", " << book[index].Name_book << ", " << name << ", " << mssv << ", " << day << ", " << book[index].Price;
 		File_New_Data_Out.close();
 	}
 	else
 	{
-		cout << "Rent Fail!!" << endl;
+		cout << task << " Fail!!" << endl;
 		return;
 	}
 
@@ -429,119 +447,164 @@ void Students_Rent_Buy_Book(Data data[MAX], Book book[MAX])
 }
 void login(Members members, Book book[MAX], Data data[MAX])
 {
-	cout << "\n\n\n\t\t\t\t     WHO ARE YOU?" << endl;
-	cout << "\t\t\t=====================================" << endl;
-	cout << "\t\t\t=\t1. Managements              =" << endl;
-	cout << "\t\t\t=                                   =" << endl;
-	cout << "\t\t\t=\t2. Students                 =" << endl;
-	cout << "\t\t\t=                                   =" << endl;
-	cout << "\t\t\t=\t0. Exit                     =" << endl;
-	cout << "\t\t\t=====================================" << endl;
-	int WAY;
-	cout << "You Are: ";
-	cin >> WAY;
-	switch (WAY)
+	while (true)
 	{
-	case 1:
-	{
-		if (signin_with_managements(members))
+		system("cls");
+		cout << "\n\n\n\t\t\t\t     WHO ARE YOU?" << endl;
+		cout << "\t\t\t=====================================" << endl;
+		cout << "\t\t\t=\t1. Managements              =" << endl;
+		cout << "\t\t\t=                                   =" << endl;
+		cout << "\t\t\t=\t2. Students                 =" << endl;
+		cout << "\t\t\t=                                   =" << endl;
+		cout << "\t\t\t=\t0. Exit                     =" << endl;
+		cout << "\t\t\t=====================================" << endl;
+		int WAY;
+		cout << "You Are: ";
+		cin >> WAY;
+		if (WAY == 1)
 		{
-			cout << "LOGIN SUCCES!!" << endl;
-			system("pause");
-			system("cls");
-			cout << "\n\n\n\t\t\t\t     WHAT DO YOU WANT TO DO?" << endl;
-			cout << "\t\t\t=====================================" << endl;
-			cout << "\t\t\t=\t1. Print list book          =" << endl;
-			cout << "\t\t\t=                                   =" << endl;
-			cout << "\t\t\t=\t2. Print list task          =" << endl;
-			cout << "\t\t\t=                                   =" << endl;
-			cout << "\t\t\t=\t3. Add book to list         =" << endl;
-			cout << "\t\t\t=                                   =" << endl;
-			cout << "\t\t\t=\t4. Edit Data                =" << endl;
-			cout << "\t\t\t=====================================" << endl;
-			int choose;
-			cout << "Your choose is: ";
-			cin >> choose;
-			switch (choose)
+			if (signin_with_managements(members))
 			{
-			case 1:
-			{
-				Read_Book_From_File(book);
-				Print_List_Book(book);
-				break;
-			}
-			case 2:
-			{
-				Read_Data_From_File(data);
-				Print_Data(data);
-				break;
-			}
-			case 3:
-			{
-				Read_Book_From_File(book);
-				Manage_Add_Book(book);
-				break;
-			}
-			case 4:
-			{
-				Read_Data_From_File(data);
+				cout << "LOGIN SUCCES!!" << endl;
+				system("pause");
 				system("cls");
-				Manages_Edit_Data(data);
-				break;
-			}
-			default:
-				break;
-			}
-		}
-		else
-		{
-			cout << "Whoops, Something went wrong!!" << endl;
-			return;
-		}
-		break;
-	}
-	case 2:
-	{
-		if (signin_with_students(members))
-		{
-			cout << "LOGIN SUCCES!!" << endl;
-			system("pause");
-			system("cls");
-			cout << "\n\n\n\t\t\t\t     WHAT DO YOU WANT TO DO?" << endl;
-			cout << "\t\t\t=====================================" << endl;
-			cout << "\t\t\t=\t1. Print list book          =" << endl;
-			cout << "\t\t\t=                                   =" << endl;
-			cout << "\t\t\t=\t2. Rent/Buy Book              =" << endl;
-			cout << "\t\t\t=====================================" << endl;
-			int choose;
-			cout << "Your choose: ";
-			cin >> choose;
-			switch (choose)
-			{
-			case 1:
-			{
-				Read_Book_From_File(book);
-				Print_List_Book(book);
-				break;
-			}
-			case 2:
-			{
-				system("cls");
-				Read_Data_From_File(data);
-				Students_Rent_Buy_Book(data,book);
-			}
-			default:
-				break;
-			}
-		}
-		else
-		{
-			cout << "Whoops, Something went wrong!!" << endl;
-			return;
-		}
-	}
-	default:
-		break;
-	}
+				while (true)
+				{
+					cout << "\n\n\n\t\t\t\t     WHAT DO YOU WANT TO DO?" << endl;
+					cout << "\t\t\t=====================================" << endl;
+					cout << "\t\t\t=\t1. Print list book          =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t2. Print list task          =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t3. Add book to list         =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t4. Edit Data                =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t0. Exit                     =" << endl;
+					cout << "\t\t\t=====================================" << endl;
+					int choose;
+					cout << "Your choose is: ";
+					cin >> choose;
+					switch (choose)
+					{
+					case 1:
+					{
+						system("cls");
+						book->LengOfBook = 0;
+						Read_Book_From_File(book);
+						Print_List_Book(book);
+						system("pause");
+						system("cls");
+						break;
+					}
+					case 2:
+					{
+						system("cls");
+						data->LengOfData = 0;
+						Read_Data_From_File(data);
+						Print_Data(data);
+						cout << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					case 3:
+					{
+						system("cls");
+						Manage_Add_Book(book);
+						system("pause");
+						system("cls");
+						break;
+					}
+					case 4:
+					{
+						system("cls");
+						Manages_Edit_Data(data);
+						system("pause");
+						system("cls");
+						break;
+					}
+					default:
+					{
+						break;
 
+					}
+					}
+					if (choose == 0)
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				cout << "Whoops, something went wrong!!" << endl;
+				return;
+			}
+
+		}
+		else if (WAY == 2)
+		{
+			if (signin_with_students(members))
+			{
+				cout << "LOGIN SUCCES!!" << endl;
+				system("pause");
+				system("cls");
+				while (true)
+				{
+					system("cls");
+					cout << "\n\n\n\t\t\t\t     WHAT DO YOU WANT TO DO?" << endl;
+					cout << "\t\t\t=====================================" << endl;
+					cout << "\t\t\t=\t1. Print list book          =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t2. Rent/Buy Book            =" << endl;
+					cout << "\t\t\t=                                   =" << endl;
+					cout << "\t\t\t=\t0. Exit                     =" << endl;
+					cout << "\t\t\t=====================================" << endl;
+					int choose;
+					cout << "Your choose: ";
+					cin >> choose;
+					switch (choose)
+					{
+					case 1:
+					{
+						system("cls");
+						Read_Book_From_File(book);
+						Print_List_Book(book);
+						system("pause");
+						break;
+					}
+					case 2:
+					{
+						system("cls");
+						book->LengOfBook = 0;
+						Read_Book_From_File(book);
+						Students_Rent_Buy_Book(data, book);
+						system("pause");
+						system("cls");
+						break;
+					}
+					default:
+					{
+						break;
+					}
+					}
+					if (choose == 0)
+					{
+						break;
+					}
+				}
+
+			}
+			else
+			{
+				cout << "Whoops, Something went wrong!!" << endl;
+				return;
+			}
+		}
+		else
+		{
+			break;
+		}
+	}
 }
